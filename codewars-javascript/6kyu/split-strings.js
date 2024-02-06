@@ -10,37 +10,51 @@ Examples:
 'abcdef' => ['ab', 'cd', 'ef']
 */
 
-// My solution:
-function solution(str){   
-   if (str.length > 0) {
-     if (str.length % 2 !== 0) {
-       str += '_'
-       return str.match(/.{2}/g)
-     } else {
-       return str.match(/.{2}/g)
-       }
-     } else {
-       return [];
-     }
-};
+// My new solution:
+function solution(str) {
+  let arr = str.split("");
+  let result = [];
 
-// Model solution 1:
-
-function solution(s){
-   return (s+"_").match(/.{2}/g)||[]
-}
-
-// Model solution 2:
-function solution(str){
-  var i = 0;
-  var result = new Array();
-  if (str.length % 2 !== 0) {
-    str = str + '_';
-  }
-  while (i < str.length) {
-      result.push(str[i] + str[i+1]);
-      i += 2;
+  for (let i = 0; i < arr.length; i += 2) {
+    if (arr[i + 1]) {
+      result.push(arr[i] + arr[i + 1]);
+    } else {
+      result.push(arr[i] + "_");
     }
+  }
   return result;
 }
 
+// My older solution:
+function solution(str) {
+  if (str.length > 0) {
+    if (str.length % 2 !== 0) {
+      str += "_";
+      return str.match(/.{2}/g);
+    } else {
+      return str.match(/.{2}/g);
+    }
+  } else {
+    return [];
+  }
+}
+
+// Model solution 1:
+
+function solution(s) {
+  return (s + "_").match(/.{2}/g) || [];
+}
+
+// Model solution 2:
+function solution(str) {
+  var i = 0;
+  var result = new Array();
+  if (str.length % 2 !== 0) {
+    str = str + "_";
+  }
+  while (i < str.length) {
+    result.push(str[i] + str[i + 1]);
+    i += 2;
+  }
+  return result;
+}
